@@ -12,5 +12,7 @@ public interface BookService {
 
     BookDTO getBookById(Long id);
 
-    List<BookDTO> getBookByStatus(String status);
+    List<BookDTO> getBooksByStatus(String status);
+
+    BookDTO createNewBook(BookDTO bookDTO);
 }

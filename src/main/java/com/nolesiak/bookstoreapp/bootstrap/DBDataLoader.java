@@ -22,20 +22,20 @@ public class DBDataLoader implements CommandLineRunner {
         java.setStatus("available");
 
         Book beginerC = new Book();
-        java.setTitle("Beginer C");
-        java.setStatus("available");
+        beginerC.setTitle("Beginer C");
+        beginerC.setStatus("available");
 
         Book machineLearning = new Book();
-        java.setTitle("Machine Learning in Go");
-        java.setStatus("available");
+        machineLearning.setTitle("Machine Learning in Go");
+        machineLearning.setStatus("available");
 
         Book easyCPlus = new Book();
-        java.setTitle("Easy C++");
-        java.setStatus("available");
+        easyCPlus.setTitle("Easy C++");
+        easyCPlus.setStatus("available");
 
         Book python = new Book();
-        java.setTitle("New snake called 'Python'");
-        java.setStatus("available");
+        python.setTitle("New snake called Python");
+        python.setStatus("available");
 
         bookRepository.save(java);
         bookRepository.save(beginerC);

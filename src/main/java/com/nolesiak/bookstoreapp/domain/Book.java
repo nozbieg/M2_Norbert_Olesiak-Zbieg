@@ -11,9 +11,10 @@ import javax.persistence.Id;
 @Entity
 @Data
 public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String title;
-    String status;
+    private Long id;
+    private String title;
+    private String status;
 }

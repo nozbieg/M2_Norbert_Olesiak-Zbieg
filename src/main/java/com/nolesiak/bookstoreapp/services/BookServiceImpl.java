@@ -3,6 +3,7 @@ package com.nolesiak.bookstoreapp.services;
 
 import com.nolesiak.bookstoreapp.api.mapper.BookMapper;
 import com.nolesiak.bookstoreapp.api.model.BookDTO;
+import com.nolesiak.bookstoreapp.domain.Book;
 import com.nolesiak.bookstoreapp.repositories.BookRepository;
 import org.springframework.stereotype.Service;
 
@@ -36,10 +37,17 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public List<BookDTO> getBookByStatus(String status) {
+    public List<BookDTO> getBooksByStatus(String status) {
         return bookRepository.getByStatus(status)
                 .stream()
                 .map(bookMapper::bookToBookDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public BookDTO createNewBook(BookDTO bookDTO) {
+       Book book = bookMapper.bookDTOToBook(bookDTO);
+       Book savedBook = bookRepository.save(book);
+       return bookMapper.bookToBookDTO(savedBook);
     }
 }
