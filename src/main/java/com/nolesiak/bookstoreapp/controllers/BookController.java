@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/book/")
 public class BookController {
 
@@ -22,8 +22,9 @@ public class BookController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<BookDTO> getBookById(@PathVariable Long id){
-        return new ResponseEntity<BookDTO>(bookService.getBookById(id),HttpStatus.OK);
+    @ResponseStatus(HttpStatus.OK)
+    public BookDTO getBookById(@PathVariable Long id){
+        return bookService.getBookById(id);
     }
 
     @GetMapping("findByStatus/{status}")
@@ -36,5 +37,16 @@ public class BookController {
     @PostMapping
     public ResponseEntity<BookDTO> createNewBook(@RequestBody BookDTO bookDTO){
         return new ResponseEntity<BookDTO>(bookService.createNewBook(bookDTO), HttpStatus.CREATED);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<BookDTO> updateBook(@PathVariable Long id, @RequestBody BookDTO bookDTO){
+        return new ResponseEntity<BookDTO>(bookService.updateBook(id,bookDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteBook(@PathVariable Long id){
+        bookService.deleteBookById(id);
+        return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }

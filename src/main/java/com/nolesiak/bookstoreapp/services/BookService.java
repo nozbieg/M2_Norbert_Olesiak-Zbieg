@@ -15,4 +15,8 @@ public interface BookService {
     List<BookDTO> getBooksByStatus(String status);
 
     BookDTO createNewBook(BookDTO bookDTO);
+
+    BookDTO updateBook(Long id, BookDTO bookDTO);
+
+    void deleteBookById(Long id);
 }
