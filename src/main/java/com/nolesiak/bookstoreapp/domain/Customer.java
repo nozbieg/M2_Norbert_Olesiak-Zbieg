@@ -1,6 +1,5 @@
 package com.nolesiak.bookstoreapp.domain;
 
-
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,17 +7,13 @@ import java.util.List;
 
 @Entity
 @Data
-public class Book {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String status;
+    private String customerName;
 
-    @ManyToOne
-    private Customer borrower;
-
-    @ManyToMany
-    private List<Library> libraries;
+    @OneToMany
+    private List<Book> borrowedBooks;
 }
