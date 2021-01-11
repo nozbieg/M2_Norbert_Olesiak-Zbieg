@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,10 +20,10 @@ public class Library {
     private String libraryName;
 
     @ManyToMany
-    private List<Book> bookList;
+    private List<Book> bookList = new ArrayList<Book>();
 
     @OneToMany
-    private List<Employee> employees;
+    private List<Employee> employees = new ArrayList<Employee>();
 
     public void addBookToLibrary(Book book){
         bookList.add(book);

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,7 +25,7 @@ public class Book {
     private Customer borrower;
 
     @ManyToMany
-    private List<Library> libraries;
+    private List<Library> libraries = new ArrayList<Library>();
 
     public void addLibraryToBook(Library library){
         libraries.add(library);

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,7 @@ public class Customer {
     private String customerName;
 
     @OneToMany
-    private List<Book> borrowedBooks;
+    private List<Book> borrowedBooks = new ArrayList<Book>();
 
     public void borrowBook(Book book){
         if(book.getStatus() == "available"){
