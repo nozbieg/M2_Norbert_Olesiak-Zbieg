@@ -11,6 +11,8 @@ import com.nolesiak.bookstoreapp.repositories.LibraryRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class DBDataLoader implements CommandLineRunner
 {
@@ -101,6 +103,14 @@ public class DBDataLoader implements CommandLineRunner
         bookRepository.save(beginnerC);
         bookRepository.save(machineLearning);
         bookRepository.save(easyCPlus);
+        bookRepository.save(python);
+
+        addBookToLibrary(java, 1L);
+        addBookToLibrary(beginnerC, 1L);
+        addBookToLibrary(machineLearning, 1L);
+        addBookToLibrary(easyCPlus, 2L);
+        addBookToLibrary(python, 2L);
+
     }
 
     public void addCustomersToDatabase()
@@ -113,8 +123,25 @@ public class DBDataLoader implements CommandLineRunner
 
         customerRepository.save(janek);
         customerRepository.save(zuzia);
+        borrowSomeBooks(janek, 1L);
+        borrowSomeBooks(zuzia, 2L);
+    }
+
+    public void borrowSomeBooks(Customer customer, Long id){
+        Book book = bookRepository.findById(id).get();
+        customer.borrowBook(book);
+        customerRepository.save(customer);
+        bookRepository.save(book);
 
     }
+
+    public void addBookToLibrary(Book book, Long id){
+        Library library = libraryRepository.findById(id).get();
+        book.addLibraryToBook(library);
+        bookRepository.save(book);
+
+    }
+
 
 
 }
