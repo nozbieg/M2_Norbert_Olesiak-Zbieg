@@ -5,7 +5,6 @@ import com.nolesiak.bookstoreapp.api.mapper.BookMapper;
 import com.nolesiak.bookstoreapp.api.mapper.CustomerMapper;
 import com.nolesiak.bookstoreapp.api.model.BookDTO;
 import com.nolesiak.bookstoreapp.api.model.CustomerDTO;
-import com.nolesiak.bookstoreapp.domain.Book;
 import com.nolesiak.bookstoreapp.domain.Customer;
 import com.nolesiak.bookstoreapp.repositories.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -62,5 +61,19 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setId(customerID);
         Customer savedCustomer = customerRepository.save(customer);
         return customerMapper.customerToCustomerDTO(savedCustomer);
+    }
+
+    @Override
+    public void deleteCustomerById(Long customerID){
+        customerRepository.deleteById(customerID);
+    }
+
+    @Override
+    public void borrowBook(Long customerID, BookDTO bookDTO){
+        var customer = getCustomerById(customerID);
+        var mappedCustomer = customerMapper.customerDTOToCustomer(customer);
+        var mappedBook = bookMapper.bookDTOToBook(bookDTO);
+        mappedCustomer.borrowBook(mappedBook);
+        customerRepository.save(mappedCustomer);
     }
 }

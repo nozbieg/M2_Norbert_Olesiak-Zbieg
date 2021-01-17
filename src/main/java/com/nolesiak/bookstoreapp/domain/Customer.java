@@ -1,8 +1,6 @@
 package com.nolesiak.bookstoreapp.domain;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,8 +8,6 @@ import java.util.List;
 
 @Entity
 @Data
-@Getter
-@Setter
 public class Customer {
 
     @Id
@@ -19,12 +15,13 @@ public class Customer {
     private Long id;
     private String customerName;
 
-    @OneToMany
+    @OneToMany(mappedBy = "borrower", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> borrowedBooks = new ArrayList<Book>();
 
     public void borrowBook(Book book){
         if(book.getStatus() == "available"){
             borrowedBooks.add(book);
+            book.setBorrower(this);
             book.setStatus("unavailable");
         }
 

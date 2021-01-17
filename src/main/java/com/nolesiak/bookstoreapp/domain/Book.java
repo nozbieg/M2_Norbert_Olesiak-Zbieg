@@ -2,8 +2,6 @@ package com.nolesiak.bookstoreapp.domain;
 
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,8 +9,6 @@ import java.util.List;
 
 @Entity
 @Data
-@Getter
-@Setter
 public class Book {
 
     @Id
@@ -21,7 +17,7 @@ public class Book {
     private String title;
     private String status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Customer borrower;
 
     @ManyToMany
