@@ -38,7 +38,7 @@ public class DBDataLoader implements CommandLineRunner
     public void run(String... args) throws Exception
     {
         addLibrariesToDatabase();
-        addEmployessToDatabase();
+        addEmployeesToDatabase();
         addBooksToDatabase();
         addCustomersToDatabase();
 
@@ -58,7 +58,7 @@ public class DBDataLoader implements CommandLineRunner
         System.out.println("Libraries loaded to DB!");
     }
 
-    public void addEmployessToDatabase()
+    public void addEmployeesToDatabase()
     {
         Employee accountant = new Employee();
         accountant.setEmployeeName("Accountant");
