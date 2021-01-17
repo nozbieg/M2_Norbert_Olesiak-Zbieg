@@ -55,6 +55,7 @@ public class DBDataLoader implements CommandLineRunner
 
         libraryRepository.save(grandLibrary);
         libraryRepository.save(smallLibrary);
+        System.out.println("Libraries loaded to DB!");
     }
 
     public void addEmployessToDatabase()
@@ -75,6 +76,7 @@ public class DBDataLoader implements CommandLineRunner
         employeeRepository.save(secondAccountant);
         employeeRepository.save(secondWorker);
         employeeRepository.save(worker);
+        System.out.println("Employees loaded to DB!");
     }
 
     public void addBooksToDatabase()
@@ -110,6 +112,7 @@ public class DBDataLoader implements CommandLineRunner
         addBookToLibrary(machineLearning, 1L);
         addBookToLibrary(easyCPlus, 2L);
         addBookToLibrary(python, 2L);
+        System.out.println("Books loaded to DB!");
 
     }
 
@@ -125,6 +128,8 @@ public class DBDataLoader implements CommandLineRunner
         customerRepository.save(zuzia);
         borrowSomeBooks(janek, 1L);
         borrowSomeBooks(zuzia, 2L);
+
+        System.out.println("Customers loaded to DB!");
     }
 
     public void borrowSomeBooks(Customer customer, Long id){

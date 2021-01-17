@@ -1,5 +1,6 @@
 package com.nolesiak.bookstoreapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Customer {
     private Long id;
     private String customerName;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "borrower", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> borrowedBooks = new ArrayList<Book>();
 

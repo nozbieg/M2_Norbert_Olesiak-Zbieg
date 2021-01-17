@@ -1,5 +1,6 @@
 package com.nolesiak.bookstoreapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,15 +19,18 @@ public class Library {
     @ManyToMany
     private List<Book> bookList = new ArrayList<Book>();
 
-    @OneToMany
+    @JsonManagedReference
+    @OneToMany(mappedBy = "library", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Employee> employees = new ArrayList<Employee>();
 
     public void addBookToLibrary(Book book){
         bookList.add(book);
     }
 
-    public void addEmployeeToLibrary(Employee employee){
+    public void addEmployeeToLibrary(Employee employee)
+    {
         employees.add(employee);
+        employee.setLibrary(this);
     }
 
 }

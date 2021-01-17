@@ -1,5 +1,6 @@
 package com.nolesiak.bookstoreapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ public class Employee {
     private Long id;
     private String employeeName;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
     private Library library;
 }

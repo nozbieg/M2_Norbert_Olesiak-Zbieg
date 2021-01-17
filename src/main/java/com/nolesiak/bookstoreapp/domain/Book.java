@@ -1,6 +1,7 @@
 package com.nolesiak.bookstoreapp.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Book {
     private String title;
     private String status;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer borrower;
 
