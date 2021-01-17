@@ -34,6 +34,7 @@ public class CustomerController {
     CustomerDTO getCustomerById(@PathVariable Long id){
         return customerService.getCustomerById(id);
     }
+
     @GetMapping("getCustomerBooks/{customerId}")
     @ResponseStatus(HttpStatus.OK)
     public List<BookDTO> getAllCustomerBooks(@PathVariable Long customerId){

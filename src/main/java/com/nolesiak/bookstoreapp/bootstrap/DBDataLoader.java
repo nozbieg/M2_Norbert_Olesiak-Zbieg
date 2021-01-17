@@ -67,7 +67,7 @@ public class DBDataLoader implements CommandLineRunner
         secondAccountant.setEmployeeName("Second Accountant");
 
         Employee worker = new Employee();
-        worker.setEmployeeName("Second Worker");
+        worker.setEmployeeName("Worker");
 
         Employee secondWorker = new Employee();
         secondWorker.setEmployeeName("Second Worker");
