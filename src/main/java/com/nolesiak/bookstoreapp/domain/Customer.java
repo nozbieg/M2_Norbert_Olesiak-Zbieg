@@ -23,7 +23,7 @@ public class Customer {
     public void borrowBook(Book book){
         if(book.getStatus() == "available"){
             borrowedBooks.add(book);
-            book.setBorrower(this);
+            //book.setBorrower(this);
             book.setStatus("unavailable");
         }
 

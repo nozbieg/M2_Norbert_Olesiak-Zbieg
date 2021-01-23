@@ -3,6 +3,7 @@ package com.nolesiak.bookstoreapp.controllers;
 
 import com.nolesiak.bookstoreapp.api.model.BookDTO;
 import com.nolesiak.bookstoreapp.api.model.BookListDTO;
+import com.nolesiak.bookstoreapp.api.model.CustomerDTO;
 import com.nolesiak.bookstoreapp.services.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,12 @@ public class BookController {
     @ResponseStatus(HttpStatus.OK)
     public BookDTO getBookById(@PathVariable Long id){
         return bookService.getBookById(id);
+    }
+
+    @GetMapping("getAllBooks")
+    @ResponseStatus(HttpStatus.OK)
+    public List<BookDTO> getAllCustomers(){
+        return bookService.getAllBooks();
     }
 
     @GetMapping("findByStatus/{status}")

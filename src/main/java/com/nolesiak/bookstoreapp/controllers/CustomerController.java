@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/customer/")
 public class CustomerController {
-
     private final CustomerService customerService;
     private BookMapper bookMapper;
 
@@ -22,19 +21,16 @@ public class CustomerController {
         this.customerService = customerService;
         this.bookMapper = bookMapper;
     }
-
     @GetMapping("getAllCustomers")
     @ResponseStatus(HttpStatus.OK)
     public List<CustomerDTO> getAllCustomers(){
         return customerService.getAllCustomers();
     }
-
     @GetMapping("getCustomerById/{id}")
     @ResponseStatus(HttpStatus.OK)
     CustomerDTO getCustomerById(@PathVariable Long id){
         return customerService.getCustomerById(id);
     }
-
     @GetMapping("getCustomerBooks/{customerId}")
     @ResponseStatus(HttpStatus.OK)
     public List<BookDTO> getAllCustomerBooks(@PathVariable Long customerId){
@@ -44,7 +40,7 @@ public class CustomerController {
                                 .map(bookMapper::bookToBookDTO)
                                 .collect(Collectors.toList());
     }
-    @PostMapping
+    @PostMapping("createNewCustomer")
     public ResponseEntity<CustomerDTO> createNewCustomer(@RequestBody CustomerDTO customerDTO){
         return new ResponseEntity<CustomerDTO>(customerService.createNewCustomer(customerDTO), HttpStatus.CREATED);
     }
